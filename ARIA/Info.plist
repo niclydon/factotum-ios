@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.example.factotum.refresh</string>
+		<string>com.example.factotum.lens</string>
+	</array>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Factotum</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.example.factotum.oauth</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>aria</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>ARIA uses your music listening history to provide contextual awareness about your interests and mood.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>ARIA uses Face ID to protect your private data.</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>ARIA reads your health records (labs, conditions, medications, immunizations) to keep your personal health history complete.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>ARIA uses health data to provide contextual awareness about your wellbeing.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>ARIA may write health-related data to help track your wellbeing.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>ARIA uses background location (visits and significant location changes) for contextual awareness.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>ARIA uses your location for contextual awareness.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>ARIA uses the microphone for voice conversations.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>ARIA uses motion data to detect your activity for contextual awareness.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Factotum's Lens analyzes your photos and videos on this device to build your timeline, On This Day memories, and searchable photo intelligence. Originals never leave your iPhone; only short text descriptions are synced.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>ARIA uses speech recognition for voice conversations.</string>
+	<key>NSSupportsLiveActivities</key>
+	<true/>
+	<key>UIApplicationShortcutItems</key>
+	<array>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCompose</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Quick Question</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.example.factotum.quick-question</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeCapturePhoto</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Log a Thought</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.example.factotum.log-thought</string>
+		</dict>
+		<dict>
+			<key>UIApplicationShortcutItemIconType</key>
+			<string>UIApplicationShortcutIconTypeDate</string>
+			<key>UIApplicationShortcutItemTitle</key>
+			<string>Check My Day</string>
+			<key>UIApplicationShortcutItemType</key>
+			<string>com.example.factotum.check-my-day</string>
+		</dict>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+		<string>location</string>
+	</array>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+</dict>
+</plist>

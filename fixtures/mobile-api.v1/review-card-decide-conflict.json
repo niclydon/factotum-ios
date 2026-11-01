@@ -1,0 +1,19 @@
+{
+  "error": "already_decided",
+  "card": {
+    "id": "33333333-3333-4333-8333-333333333333",
+    "kind": "term_resolution_confirm",
+    "domain": "memoir",
+    "title": "Term: 'the cabin' → Sample Lake House",
+    "body": "Synthetic memoir term resolution.",
+    "posted_at": "2026-09-05T09:00:00.000Z",
+    "expires_at": null,
+    "status": "decided",
+    "selected_decision": "dismissed",
+    "decided_at": "2026-09-06T12:30:00.000Z",
+    "decided_by": "discord:synthetic",
+    "actions": [],
+    "selects": [],
+    "reply_capture_actions": {}
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "methods": [
+    {
+      "id": "method-synthetic-1",
+      "channel": "push",
+      "label": "iPhone-synthetic",
+      "config": {
+        "device_token": "synthetic-token-not-real",
+        "is_sandbox": true
+      },
+      "is_enabled": true,
+      "push_preferences": {
+        "notifications": true,
+        "reports": false,
+        "urgency_filter": "all"
+      },
+      "created_at": "2026-07-12T00:00:00.000Z",
+      "updated_at": "2026-07-12T00:00:00.000Z"
+    }
+  ]
+}

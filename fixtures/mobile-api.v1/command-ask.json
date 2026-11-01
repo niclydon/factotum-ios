@@ -1,0 +1,13 @@
+{
+  "answer": "Synthetic grounded answer with no private content.",
+  "toolCalls": [
+    {
+      "tool": "example_unified_view",
+      "ok": true,
+      "result": "synthetic hit count: 2"
+    }
+  ],
+  "readToolCount": 1,
+  "steps": 2,
+  "truncated": false
+}

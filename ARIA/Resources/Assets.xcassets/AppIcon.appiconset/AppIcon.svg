@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1a1d24"/>
+      <stop offset="100%" stop-color="#0d0d0f"/>
+    </linearGradient>
+    <!-- A lettermark gradient -->
+    <linearGradient id="aGrad" x1="0.5" y1="0" x2="0.5" y2="1">
+      <stop offset="0%" stop-color="#4de8d2"/>
+      <stop offset="100%" stop-color="#5aadf0"/>
+    </linearGradient>
+    <!-- Glow effect -->
+    <radialGradient id="glow" cx="0.5" cy="0.45" r="0.4">
+      <stop offset="0%" stop-color="#4de8d2" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#4de8d2" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Circuit trace gradient -->
+    <linearGradient id="circuit1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4de8d2" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#4de8d2" stop-opacity="0.4"/>
+      <stop offset="70%" stop-color="#5aadf0" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#5aadf0" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="circuit2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#d4a855" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#d4a855" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#d4a855" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Rim gradient -->
+    <linearGradient id="rim" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b8bcc4" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#2a2a2e" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#b8bcc4" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1024" height="1024" rx="224" fill="url(#bg)"/>
+
+  <!-- Subtle glow behind the A -->
+  <circle cx="512" cy="440" r="350" fill="url(#glow)"/>
+
+  <!-- Outer metallic ring -->
+  <circle cx="512" cy="480" r="340" fill="none" stroke="url(#rim)" stroke-width="3"/>
+
+  <!-- Circuit trace arcs -->
+  <circle cx="512" cy="480" r="300" fill="none" stroke="url(#circuit1)" stroke-width="2"
+          stroke-dasharray="280 600" stroke-dashoffset="100"/>
+  <circle cx="512" cy="480" r="310" fill="none" stroke="url(#circuit2)" stroke-width="1.5"
+          stroke-dasharray="200 700" stroke-dashoffset="400"/>
+
+  <!-- Small circuit nodes -->
+  <circle cx="280" cy="380" r="3" fill="#4de8d2" opacity="0.4"/>
+  <circle cx="744" cy="380" r="3" fill="#4de8d2" opacity="0.4"/>
+  <circle cx="320" cy="600" r="2" fill="#d4a855" opacity="0.3"/>
+  <circle cx="704" cy="600" r="2" fill="#d4a855" opacity="0.3"/>
+
+  <!-- Stylized "A" lettermark -->
+  <!-- Left leg -->
+  <line x1="340" y1="700" x2="495" y2="280" stroke="url(#aGrad)" stroke-width="28" stroke-linecap="round"/>
+  <!-- Right leg -->
+  <line x1="529" y1="280" x2="684" y2="700" stroke="url(#aGrad)" stroke-width="28" stroke-linecap="round"/>
+  <!-- Top peak connector -->
+  <line x1="495" y1="280" x2="529" y2="280" stroke="#4de8d2" stroke-width="28" stroke-linecap="round"/>
+  <!-- Crossbar -->
+  <line x1="400" y1="540" x2="624" y2="540" stroke="#5aadf0" stroke-width="16" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- Glowing eye dots — signature ARIA cyan -->
+  <circle cx="462" cy="440" r="14" fill="#4de8d2"/>
+  <circle cx="462" cy="440" r="24" fill="#4de8d2" opacity="0.2"/>
+  <circle cx="462" cy="440" r="8" fill="white" opacity="0.6"/>
+
+  <circle cx="562" cy="440" r="14" fill="#4de8d2"/>
+  <circle cx="562" cy="440" r="24" fill="#4de8d2" opacity="0.2"/>
+  <circle cx="562" cy="440" r="8" fill="white" opacity="0.6"/>
+
+  <!-- Bottom text "ARIA" -->
+  <text x="512" y="820" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif"
+        font-size="72" font-weight="700" letter-spacing="12" fill="#5aadf0" opacity="0.5">
+    ARIA
+  </text>
+</svg>

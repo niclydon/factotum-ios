@@ -1,0 +1,32 @@
+{
+  "settings": {
+    "risk_level": "balanced",
+    "urgent_delivery_methods": [
+      "push"
+    ],
+    "standard_delivery_methods": [
+      "push",
+      "digest"
+    ],
+    "digest_schedule": {
+      "morning": "08:00",
+      "evening": "20:00"
+    },
+    "confidence_threshold": 0.7,
+    "gmail_check_interval_seconds": 900,
+    "fast_track_patterns": {
+      "auto_adapt_enabled": true,
+      "universal_patterns": [
+        "\\b911\\b"
+      ],
+      "adaptive_patterns": [
+        {
+          "pattern": "\\bsynthetic\\b",
+          "reason": "fixture only"
+        }
+      ],
+      "context_summary": "synthetic",
+      "last_regenerated_at": "2026-07-12T00:00:00.000Z"
+    }
+  }
+}

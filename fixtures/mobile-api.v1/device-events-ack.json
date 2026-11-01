@@ -1,0 +1,14 @@
+{
+  "accepted": [
+    "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa"
+  ],
+  "duplicate": [
+    "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb"
+  ],
+  "rejected": [
+    {
+      "id": null,
+      "error": "id must be a UUID"
+    }
+  ]
+}

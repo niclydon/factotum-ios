@@ -1,0 +1,60 @@
+name: CI
+
+# Factotum iOS quality gates (F0.4 of the 4.0 foundation pass): the
+# contract fixtures, a generic build, and the DEBUG self-checks on a
+# simulator. These used to run only by hand during release cuts; now
+# every push and PR runs them. NOTE: runs on the self-hosted
+# self-hosted runner (label: mac-build) because GitHub-hosted macos-26 tops
+# out at the iOS 26.5 SDK and cannot build a deployment-target-27
+# project (first hosted run failed on exactly that, 2026-10-19).
+on:
+  push:
+  pull_request:
+
+jobs:
+  gates:
+    runs-on: [self-hosted, mac-build]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select newest Xcode
+        run: |
+          # Self-hosted runner: Xcode 27.1 is the machine's
+          # default. Only attempt a switch when the default is older
+          # (sudo may be unavailable in the runner service context).
+          xcodebuild -version
+          if ! xcodebuild -version | head -1 | grep -qE 'Xcode 2[7-9]'; then
+            NEWEST=$(ls -d /Applications/Xcode*.app 2>/dev/null | sort -V | tail -1)
+            echo "Switching to $NEWEST"
+            sudo -n xcode-select -s "$NEWEST/Contents/Developer" || xcode-select -s "$NEWEST/Contents/Developer" || true
+            xcodebuild -version
+          fi
+
+      - name: Contract fixtures
+        run: swift scripts/verify-contract-fixtures.swift
+
+      - name: Generic build
+        run: >
+          xcodebuild build -project ARIA.xcodeproj -scheme ARIA
+          -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO
+
+      - name: DEBUG self-checks on simulator
+        run: |
+          RUNTIME=$(xcrun simctl list runtimes | grep -oE 'com.apple.CoreSimulator.SimRuntime.iOS-[0-9-]+' | sort -V | tail -1)
+          echo "Runtime: $RUNTIME"
+          # simctl's positional arg is a device-NAME search term, not a
+          # runtime filter (passing the runtime id lists nothing). Parse
+          # the bare list by section instead: first iPhone under the
+          # target runtime's header.
+          VER=$(echo "$RUNTIME" | sed -E 's/.*iOS-([0-9]+)-([0-9]+)/\1.\2/')
+          SIM=$(xcrun simctl list devices | awk -v ver="-- iOS $VER --" '$0==ver {f=1; next} /^-- / {f=0} f && /iPhone/ { if (match($0, /[0-9A-F-]{36}/)) { print substr($0, RSTART, RLENGTH); exit } }')
+          if [ -z "$SIM" ]; then
+            TYPE=$(xcrun simctl list devicetypes | grep -oE 'com.apple.CoreSimulator.SimDeviceType.iPhone-[0-9]+-Pro' | sort -V | tail -1)
+            SIM=$(xcrun simctl create ci-iphone "$TYPE" "$RUNTIME" | grep -oE '[0-9A-F-]{36}' | head -1)
+          fi
+          echo "Simulator: $SIM"
+          xcrun simctl boot "$SIM" || true
+          xcodebuild build -project ARIA.xcodeproj -scheme ARIA -destination "platform=iOS Simulator,id=$SIM" -derivedDataPath build/dd-ci
+          xcrun simctl install "$SIM" build/dd-ci/Build/Products/Debug-iphonesimulator/ARIA.app
+          timeout 60 xcrun simctl launch --console-pty "$SIM" com.example.factotum > launch.log 2>&1 || true
+          grep -E 'self-check OK' launch.log

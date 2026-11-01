@@ -1,0 +1,162 @@
+name: ARIA
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "17.0"
+    watchOS: "10.0"
+  xcodeVersion: "16.0"
+  defaultConfig: Debug
+  groupSortPosition: top
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "2.7.2"
+    CURRENT_PROJECT_VERSION: 21
+    DEVELOPMENT_TEAM: "YOUR_TEAM_ID"
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  ARIA:
+    type: application
+    platform: iOS
+    sources:
+      - path: ARIA
+    dependencies:
+      - target: ARIAShare
+        embed: true
+      - target: ARIAWidgets
+        embed: true
+      - target: ARIAWatch
+        embed: true
+    scheme:
+      testTargets: []
+      gatherCoverageData: false
+    settings:
+      base:
+        INFOPLIST_FILE: ARIA/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.factotum
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS: "YES"
+        SWIFT_STRICT_CONCURRENCY: complete
+        CODE_SIGN_ENTITLEMENTS: ARIA/ARIA.entitlements
+    info:
+      path: ARIA/Info.plist
+      properties:
+        CFBundleDisplayName: Factotum
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities:
+          - armv7
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        CFBundleURLTypes:
+          - CFBundleURLName: com.example.factotum.oauth
+            CFBundleURLSchemes:
+              - aria
+        NSContactsUsageDescription: "ARIA uses your contacts to help manage your relationships and communications."
+        NSCalendarsFullAccessUsageDescription: "ARIA uses your calendar to help manage your schedule."
+        NSRemindersFullAccessUsageDescription: "ARIA uses your reminders to help manage your tasks."
+        UIBackgroundModes:
+          - fetch
+          - remote-notification
+          - location
+        NSHealthShareUsageDescription: "ARIA uses health data to provide contextual awareness about your wellbeing."
+        NSHealthUpdateUsageDescription: "ARIA may write health-related data to help track your wellbeing."
+        NSLocationWhenInUseUsageDescription: "ARIA uses your location for contextual awareness and geofence monitoring."
+        NSLocationAlwaysAndWhenInUseUsageDescription: "ARIA uses background location for contextual awareness and geofence monitoring at your saved locations."
+        NSSpeechRecognitionUsageDescription: "ARIA uses speech recognition for voice conversations."
+        NSMicrophoneUsageDescription: "ARIA uses the microphone for voice conversations."
+        NSFaceIDUsageDescription: "ARIA uses Face ID to protect your private data."
+        NSMotionUsageDescription: "ARIA uses motion data to detect your activity for contextual awareness."
+        NSAppleMusicUsageDescription: "ARIA uses your music listening history to provide contextual awareness about your interests and mood."
+        NSHomeKitUsageDescription: "ARIA uses HomeKit to provide smart home awareness and control suggestions."
+        UIApplicationShortcutItems:
+          - UIApplicationShortcutItemType: com.example.factotum.quick-question
+            UIApplicationShortcutItemTitle: Quick Question
+            UIApplicationShortcutItemIconType: UIApplicationShortcutIconTypeCompose
+          - UIApplicationShortcutItemType: com.example.factotum.log-thought
+            UIApplicationShortcutItemTitle: Log a Thought
+            UIApplicationShortcutItemIconType: UIApplicationShortcutIconTypeCapturePhoto
+          - UIApplicationShortcutItemType: com.example.factotum.check-my-day
+            UIApplicationShortcutItemTitle: Check My Day
+            UIApplicationShortcutItemIconType: UIApplicationShortcutIconTypeDate
+        ITSAppUsesNonExemptEncryption: false
+        NSSupportsLiveActivities: true
+
+  ARIAWidgets:
+    type: app-extension
+    platform: iOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.factotum.widgets
+        SWIFT_STRICT_CONCURRENCY: complete
+        ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME: WidgetBackground
+        NSSupportsLiveActivities: true
+    sources:
+      - path: ARIAWidgets
+      - path: ARIA/Services/WidgetDataService.swift
+      - path: ARIA/Services/LiveActivityService.swift
+      - path: ARIA/Resources/Assets.xcassets
+    info:
+      path: ARIAWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: ARIA Widgets
+        NSSupportsLiveActivities: true
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+
+  ARIAShare:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ShareExtension
+      - path: ARIA/Services/KeychainManager.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.factotum.share
+        INFOPLIST_FILE: ShareExtension/Info.plist
+        SWIFT_STRICT_CONCURRENCY: complete
+        CODE_SIGN_ENTITLEMENTS: ShareExtension/ShareExtension.entitlements
+    info:
+      path: ShareExtension/Info.plist
+      properties:
+        CFBundleDisplayName: Send to ARIA
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: "$(PRODUCT_MODULE_NAME).ShareViewController"
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsText: true
+              NSExtensionActivationSupportsWebURLWithMaxCount: 1
+              NSExtensionActivationSupportsImageWithMaxCount: 1
+
+  ARIAWatch:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.0"
+    sources:
+      - path: ARIAWatch
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.factotum.watchkitapp
+        INFOPLIST_KEY_WKCompanionAppBundleIdentifier: com.example.factotum
+        SWIFT_STRICT_CONCURRENCY: complete
+        CODE_SIGN_ENTITLEMENTS: ARIAWatch/ARIAWatch.entitlements
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: 1
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    info:
+      path: ARIAWatch/Info.plist
+      properties:
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.example.factotum
+        CFBundleDisplayName: ARIA
+        CFBundleIconName: AppIcon

@@ -1,0 +1,14 @@
+{
+  "devices": [
+    {
+      "id": "method-synthetic-1",
+      "label": "iPhone-synthetic",
+      "is_enabled": true,
+      "push_preferences": {
+        "notifications": true,
+        "reports": false,
+        "urgency_filter": "all"
+      }
+    }
+  ]
+}

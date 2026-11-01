@@ -1,0 +1,41 @@
+{
+  "data": [
+    {
+      "id": "example-local",
+      "type": "text",
+      "provider": null,
+      "status": "available",
+      "pickable": true
+    },
+    {
+      "id": "example-cloud",
+      "type": "text",
+      "provider": "anthropic",
+      "status": "available",
+      "pickable": true
+    },
+    {
+      "id": "example-permissive",
+      "type": "text",
+      "provider": null,
+      "status": "available",
+      "pickable": true,
+      "deprecated_until": "2026-08-01"
+    },
+    {
+      "id": "example-retired",
+      "type": "text",
+      "provider": null,
+      "status": "available",
+      "pickable": true,
+      "retired_on": "2026-06-01"
+    },
+    {
+      "id": "example-embed",
+      "type": "embedding",
+      "provider": null,
+      "status": "available",
+      "pickable": true
+    }
+  ]
+}

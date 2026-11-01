@@ -1,0 +1,7 @@
+# ARIA iOS Version
+# Before committing, decide whether this is a major or minor update:
+#   - Major (X.0): breaking changes, large new features, architectural shifts
+#   - Minor (X.Y): new integrations, bug fixes, incremental improvements
+# Increment the appropriate number below before every commit to this repo.
+# Also update MARKETING_VERSION in project.yml to match.
+2.7.3

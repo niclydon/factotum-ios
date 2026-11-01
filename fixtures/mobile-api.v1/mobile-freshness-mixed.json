@@ -1,0 +1,106 @@
+{
+  "contract_version": "1.0.0",
+  "server_time": "2026-07-20T12:00:00.000Z",
+  "sources": [
+    {
+      "source_key": "healthkit",
+      "app_key": "health",
+      "display_label": "Health",
+      "kind": "device_sync",
+      "status": "fresh",
+      "last_seen_at": "2026-07-20T10:00:00.000Z",
+      "age_bucket": "lt_6h",
+      "expected_cadence_hours": 36,
+      "failure_class": null,
+      "user_facing_state": "ok"
+    },
+    {
+      "source_key": "device_location",
+      "app_key": "location",
+      "display_label": "Location",
+      "kind": "device_sync",
+      "status": "stale",
+      "last_seen_at": "2026-07-19T12:00:00.000Z",
+      "age_bucket": "1d_3d",
+      "expected_cadence_hours": 12,
+      "failure_class": "past_expected_cadence",
+      "user_facing_state": "stale"
+    },
+    {
+      "source_key": "device_motion_activity",
+      "app_key": "motion",
+      "display_label": "Motion & Activity",
+      "kind": "device_sync",
+      "status": "error",
+      "last_seen_at": "2026-07-20T08:00:00.000Z",
+      "age_bucket": "lt_6h",
+      "expected_cadence_hours": 24,
+      "failure_class": "registry_error",
+      "user_facing_state": "error"
+    },
+    {
+      "source_key": "device_music",
+      "app_key": "music",
+      "display_label": "Music",
+      "kind": "device_sync",
+      "status": "empty",
+      "last_seen_at": null,
+      "age_bucket": "never",
+      "expected_cadence_hours": 48,
+      "failure_class": null,
+      "user_facing_state": "empty"
+    },
+    {
+      "source_key": "cards",
+      "app_key": "cards",
+      "display_label": "Cards / Console",
+      "kind": "surface",
+      "status": "fresh",
+      "last_seen_at": null,
+      "age_bucket": "lt_6h",
+      "expected_cadence_hours": null,
+      "failure_class": null,
+      "user_facing_state": "ok"
+    },
+    {
+      "source_key": "chat",
+      "app_key": "chat",
+      "display_label": "Chat / History",
+      "kind": "surface",
+      "status": "fresh",
+      "last_seen_at": "2026-07-20T11:30:00.000Z",
+      "age_bucket": "lt_6h",
+      "expected_cadence_hours": 168,
+      "failure_class": null,
+      "user_facing_state": "ok"
+    },
+    {
+      "source_key": "push",
+      "app_key": "push",
+      "display_label": "Push notifications",
+      "kind": "push",
+      "status": "fresh",
+      "last_seen_at": null,
+      "age_bucket": "lt_6h",
+      "expected_cadence_hours": null,
+      "failure_class": null,
+      "user_facing_state": "ok"
+    }
+  ],
+  "summary": {
+    "fresh": 4,
+    "stale": 1,
+    "error": 1,
+    "empty": 1,
+    "unknown": 0,
+    "disabled": 0,
+    "overall": "error"
+  },
+  "platform": {
+    "bridge_health": "ok",
+    "worker_queue": {
+      "pending": 12,
+      "status": "ok"
+    }
+  }
+}
