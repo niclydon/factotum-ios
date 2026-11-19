@@ -467,6 +467,14 @@ struct ReplayItemScriptDTO: Decodable {
     let id: String; let family: String; let source: String; let timestamp: String; let summary: String
     let fields: [String: ScriptFieldValue]
 }
+struct MobileOpsRoomScriptDTO: Decodable {
+    struct Pane: Decodable { let pane_id: String; let host: String; let agent: String?; let kind: String?; let state: String; let title: String?; let claimed_ob_id: Int?; let workspace_id: String?; let age_s: Int?; let last_seen_at: String? }
+    struct Lane: Decodable { let lane: String; let depth: Int }
+    struct Summary: Decodable { let panes_reporting: Int; let total_ready: Int }
+    let contract_version: String; let generated_at: String; let calm: Bool
+    let panes: [Pane]; let counts_by_state: [String: Int]; let lanes: [Lane]; let summary: Summary
+}
+
 struct ReplayDayScriptDTO: Decodable {
     struct Family: Decodable { let count: Int; let truncated: Bool; let items: [ReplayItemScriptDTO] }
     let contract_version: String; let date: String; let item_count: Int
@@ -500,6 +508,13 @@ let expected: [(String, (Data) throws -> Void)] = [
     ("mobile-photo-terms", { data in
         let r = try decode(PhotoTermsAckDTO.self, from: data, label: "mobile-photo-terms")
         guard r.received_terms == 10, r.inserted == 9, r.duplicates == 1 else { throw VerifyError.message("mobile-photo-terms: ack counts") }
+    }),
+    ("mobile-ops-room-response", { data in
+        let r = try decode(MobileOpsRoomScriptDTO.self, from: data, label: "mobile-ops-room-response")
+        guard r.contract_version == "1.3.0", r.calm == false, r.panes.count == 2,
+              r.panes[1].claimed_ob_id != nil, r.panes[0].claimed_ob_id == nil,
+              r.counts_by_state["working"] == 1, r.lanes.count == 2,
+              r.summary.panes_reporting == 2, r.summary.total_ready == 10 else { throw VerifyError.message("mobile-ops-room-response") }
     }),
     ("mobile-replay-day", { data in
         let r = try decode(ReplayDayScriptDTO.self, from: data, label: "mobile-replay-day")

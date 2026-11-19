@@ -1,0 +1,49 @@
+{
+  "contract_version": "1.3.0",
+  "generated_at": "2026-11-12T17:00:00.000Z",
+  "calm": false,
+  "panes": [
+    {
+      "pane_id": "synthetic-pane-a",
+      "host": "example-host",
+      "agent": "agent-a",
+      "kind": "worker",
+      "state": "idle",
+      "title": "Synthetic task A",
+      "claimed_ob_id": null,
+      "workspace_id": "ws-synthetic-a",
+      "age_s": 30,
+      "last_seen_at": "2026-11-12T16:59:30.000Z"
+    },
+    {
+      "pane_id": "synthetic-pane-b",
+      "host": "example-host",
+      "agent": "agent-b",
+      "kind": "worker",
+      "state": "working",
+      "title": "Synthetic task B",
+      "claimed_ob_id": 1001,
+      "workspace_id": "ws-synthetic-b",
+      "age_s": 120,
+      "last_seen_at": "2026-11-12T16:58:00.000Z"
+    }
+  ],
+  "counts_by_state": {
+    "idle": 1,
+    "working": 1
+  },
+  "lanes": [
+    {
+      "lane": "lane-a",
+      "depth": 7
+    },
+    {
+      "lane": "unrouted",
+      "depth": 3
+    }
+  ],
+  "summary": {
+    "panes_reporting": 2,
+    "total_ready": 10
+  }
+}

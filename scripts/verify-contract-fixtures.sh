@@ -66,6 +66,12 @@ checks = {
     "proactive-settings": lambda d: d.get("settings", {}).get("risk_level") == "balanced",
     "proactive-insights": lambda d: len(d.get("insights", [])) == 1,
     "proactive-insights-empty": lambda d: d.get("insights") == [],
+    "mobile-ops-room-response": lambda d: (
+        d.get("contract_version") == "1.3.0" and d.get("calm") is False
+        and len(d.get("panes", [])) == 2 and d.get("counts_by_state") == {"idle": 1, "working": 1}
+        and len(d.get("lanes", [])) == 2 and d.get("summary", {}).get("total_ready") == 10
+        and not any(k in p for p in d["panes"] for k in ("snippet", "output", "observed"))
+    ),
     "mobile-freshness-mixed": lambda d: (
         d.get("contract_version") == "1.0.0"
         and isinstance(d.get("sources"), list) and len(d["sources"]) == 7
