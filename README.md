@@ -77,6 +77,19 @@ signing and App Store Connect identifiers are read from the environment
 (`APPLE_TEAM_ID`, `ASC_KEY_ID`, `ASC_ISSUER_ID`), and the OTA publishing
 script is configured entirely through environment variables.
 
+## Continuous integration
+
+Public CI (`.github/workflows/ci.yml`) runs on a GitHub-hosted Linux
+runner and executes `bash scripts/verify-contract-fixtures.sh`: JSON
+parsing, fixture-manifest completeness, and the required-key shape and
+privacy checks, plus the Swift Codable decode of every fixture when the
+runner image provides a Swift toolchain (the script skips that step if
+Swift is absent). The Xcode device and simulator builds require a current
+Xcode SDK; they, and the authoritative Swift decode for releases, are
+validated in the maintainer's private release pipeline rather than in
+public CI. Contributors with a Mac can run the same checks locally with
+the commands above.
+
 ## License
 
 Apache License 2.0; see `LICENSE`.
