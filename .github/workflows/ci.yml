@@ -5,9 +5,11 @@ name: CI
 # Runs on a GitHub-hosted Linux runner so every push and PR (including
 # forks) gets a result without touching private build hardware.
 #
-# The full Swift Codable decode and the Xcode device/simulator builds
-# need a current Xcode SDK and are validated in the maintainer's private
-# release pipeline, not here. See "Continuous integration" in README.md.
+# When the hosted image provides a Swift toolchain the script also runs
+# the Swift Codable decode of every fixture (it skips that step if Swift
+# is absent). The Xcode device/simulator builds need a current Xcode SDK
+# and are validated in the maintainer's private release pipeline, not
+# here. See "Continuous integration" in README.md.
 on:
   push:
   pull_request:
@@ -22,5 +24,5 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Contract fixtures (JSON + shape gate)
+      - name: Contract fixtures
         run: bash scripts/verify-contract-fixtures.sh
